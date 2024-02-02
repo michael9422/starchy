@@ -1,0 +1,10 @@
+--------------------------------------------------------- v0.6.0:
+
++ Unlink the correct *_tmp filename in "starchy_create.c".
+
++ Export the kdtree_u_search functions, e.g. declare them not static,
+  and rename with the prefix starchy_.
+
++ Remove print statements from the library functions.
+
+--------------------------------------------------------- v0.5.2

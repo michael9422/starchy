@@ -1,0 +1,49 @@
+
+starchy
+=======
+
+The "starchy" astronomy library is for coordinatizing pictures of stars
+by comparing their positions with the positions of stars in a catalog.
+It is an all-sky search, intended for fields of view of approximately ~10
+degrees or less, and where the image scale is already known.
+
+The library is not "thread safe", but it could be used in a multi-threaded
+process by using semaphores for exclusive access. If it is compiled as a
+shared library instead of statically, I am not sure that it is multi-
+process safe either. The issue (concurrent access to the library) could be
+resolved by eliminating the global variables, which there are not many of.
+
+See the INSTALL file for installation instructions.
+ 
+See the example program "starchy_search.c" for instructions on using the
+library. Some test pictures are included. After compiling the program, test
+it with, for example,
+
+	# ./starchy_search wide-004.fits
+
+This program was written for doing all-sky telescope pointing using a spotting
+scope camera with a (wide) ~7 degree field of view.
+
+To try to make the matching faster, the routines require an initial estimate
+of the image scale and a range of uncertainty for that scale. Decreasing the
+uncertainty makes matching faster.
+
+After a successful match, the resulting WCS values are not especially accurate.
+That is because the calculation is not using all of the stars in the field.
+Actually, it only uses the position of one star, and calculates orientation
+from some of the other stars. 
+
+The calculations are not precise. For example, the functions
+starchy_image2radec and starchy_radec2image should be inverse functions
+exactly, but they are not. For my purpose though, it is good enough.
+
+The four index files,
+
+	"starchy_index.member"
+	"starchy_index.star"
+	"starchy_index.ttree"
+	"starchy_index.utree"
+
+included with the source code were created on a 32-bit computer, so the struct
+sizes are not compatible with a 64-bit architechure, and have to be created
+from the Tycho catalog.

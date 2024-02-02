@@ -1,0 +1,56 @@
+
+INSTALL INSTRUCTIONS
+====================
+
+Download the source tarball or git repository to someplace convenient,
+like "/usr/local/src/". If downloading the tarball, unzip and un-tar the
+package. Change into the new directory, 
+
+	# cd starchy-x.x.x
+
+Then, from the command prompt, do (as root)
+
+	# ./configure
+	# make
+	# make install
+
+For instructions on using the library functions, see the example program
+"starchy_search.c".
+
+Included with the source code are some sample indexed data files for use
+with the library search routines. These data files are for a ~5 to 7 degree
+field of view, so the angular separation for star triplets is from 1 to 4
+degrees.
+
+To build the indexed data files for a smaller fields of view, run
+
+	# ./starchy_create <faint> <sep_min> <sep_max> <member> <int_min>
+ 
+where the parameters are
+
+	faint     - faint limit (V magnitude)
+	sep_min   - minimum star spacing for triplets (degrees)
+	sep_max   - maximum star spacing for triplets (degrees)
+	member    - maximum number of triplets for any star to be a member of
+	int_min   - interior angle minimum (degrees)
+
+The default values, which are used for the included data files, are
+
+	# ./starchy_create 8.0 1.0 4.0 12 20.0
+
+For a smaller, 0.91 degree, field of view I used these parameters
+
+	# ./starchy_create 11.0 0.15 0.5 15 20.0
+
+
+To build new indexed data files the Tycho-2 catalog must be installed. The
+default path names for it are
+
+	/usr/local/data/tycho/CD/data/index.dat
+	/usr/local/data/tycho/CD/data/catalog.dat
+
+The Tycho-2 files sizes are 
+
+	528301904 catalog.dat
+	   419672 index.dat
+
