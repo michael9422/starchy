@@ -37,13 +37,3 @@ The calculations are not precise. For example, the functions
 starchy_image2radec and starchy_radec2image should be inverse functions
 exactly, but they are not. For my purpose though, it is good enough.
 
-The four index files,
-
-	"starchy_index.member"
-	"starchy_index.star"
-	"starchy_index.ttree"
-	"starchy_index.utree"
-
-included with the source code were created on a 32-bit computer, so the struct
-sizes are not compatible with a 64-bit architechure, and have to be created
-from the Tycho catalog.
